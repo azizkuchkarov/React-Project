@@ -6,6 +6,7 @@ class User extends React.Component {
     super(props);
     this.state = {
       counter: 0,
+      age: "",
     };
   }
   onIncrement = () => {
@@ -25,13 +26,20 @@ class User extends React.Component {
     });
   };
 
+  changeHandler = (e) => {
+    this.setState({
+      age: e.target.value,
+    });
+  };
+
   render() {
     const { firstname, lastName, link } = this.props;
+    const { age, counter } = this.state;
     return (
       <div className="w-50 mx-auto">
         <div className="border p-3 mt-5">
           <h4>
-            Mening ismim - {firstname} and sharifim {lastName}
+            Mening ismim - {firstname} and sharifim {lastName} {age}
           </h4>
           <a href={link}>Youtube</a>;
           <div className="mt-3">
@@ -44,8 +52,16 @@ class User extends React.Component {
             <button onClick={this.onRestart} className="btn btn-info">
               Restart
             </button>
-            <p>{this.state.counter}</p>
+            <p>{counter}</p>
           </div>
+          <form>
+            <span>Yoshingiz</span>
+            <input
+              type="text"
+              className="form-control"
+              onChange={this.changeHandler}
+            />
+          </form>
         </div>
       </div>
     );
